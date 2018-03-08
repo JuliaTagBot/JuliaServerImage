@@ -17,7 +17,10 @@ RUN curl https://julialangnightlies-s3.julialang.org/bin/linux/x64/julia-latest-
     find . -type f -name '*.cov' -delete && \
     find . -type f -name '*.mem' -delete
 
-RUN julia/bin/julia -e 'Pkg.init(); Pkg.clone("MbedTLS"); Pkg.build("MbedTLS"); Pkg.clone("HTTP"); Pkg.clone("AMQPClient"); Pkg.clone("JSON2"); Pkg.clone("Missings"); Pkg.clone("FlatBuffers"); Pkg.clone("DataStreams"); Pkg.clone("MySQL"); Pkg.build("MySQL")'
+RUN julia/bin/julia -e 'using Pkg; Pkg.init(); Pkg.clone("MbedTLS"); Pkg.build("MbedTLS"); Pkg.clone("HTTP"); Pkg.clone("AMQPClient"); Pkg.clone("JSON2"); Pkg.clone("Missings"); Pkg.clone("FlatBuffers"); Pkg.clone("DataStreams"); Pkg.clone("MySQL"); Pkg.build("MySQL")'
+COPY MbedTLS/deps.jl julia/share/julia/site/v0.7/MbedTLS/deps/deps.jl
+COPY MySQL/deps.jl julia/share/julia/site/v0.7/MySQL/deps/deps.jl
+COPY DecFP/deps.jl julia/share/julia/site/v0.7/DecFP/deps/deps.jl
 RUN julia/bin/julia -e 'using HTTP; using Missings; using AMQPClient; using JSON2; using FlatBuffers; using MySQL'
 
 RUN rm julia/LICENSE.md && rm julia/bin/julia-debug && \

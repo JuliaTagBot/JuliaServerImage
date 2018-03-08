@@ -1,0 +1,1 @@
+const libbid = "$(@__DIR__())/usr/lib/libbid.so"
