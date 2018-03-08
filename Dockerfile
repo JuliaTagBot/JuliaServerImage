@@ -23,7 +23,6 @@ RUN julia/bin/julia -e 'using HTTP; using Missings; using AMQPClient; using JSON
 RUN rm julia/LICENSE.md && rm julia/bin/julia-debug && \
     rm -rf julia/etc && rm -rf julia/include && \
     rm -rf julia/share/appdata && rm -rf julia/share/applications && \
-    rm -rf julia/share/icons && rm -rf julia/share/man && \
-    rm -rf julia/share/julia/site/v0.7/METADATA
+    rm -rf julia/share/icons && rm -rf julia/share/man
 
 CMD /bin/bash
